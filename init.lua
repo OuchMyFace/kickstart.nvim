@@ -252,10 +252,7 @@ require('lazy').setup({
 
   -- "gc" to comment visual regions/lines
   { 'numToStr/Comment.nvim', opts = {} },
-
-  -- fountain is a screenwriting format
-  -- { 'kblin/vim-fountain'},
-
+  { 'tpope/vim-fugitive' },
   -- Here is a more advanced example where we pass configuration
   -- options to `gitsigns.nvim`. This is equivalent to the following Lua:
   --    require('gitsigns').setup({ ... })
