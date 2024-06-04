@@ -38,7 +38,7 @@ syn match xLineContinue "\\$" contained
 syn region fountainSceneNumber start="#" end="#" contained
 
 hi def link fountainTitlePage		    title
-hi def link fountainSceneHeading	    title
+hi def link fountainSceneHeading	    SpellCap
 hi def link fountainCharacter			identifier 
 hi def link fountainDialogue			statement
 hi def link fountainParenthetical		function
