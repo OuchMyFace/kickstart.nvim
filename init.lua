@@ -91,7 +91,7 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 -- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.have_nerd_font = false
-vim.cmd.colorscheme 'test'
+vim.cmd.colorscheme 'mycol'
 vim.opt.linebreak = true
 vim.opt.wrap = true
 
