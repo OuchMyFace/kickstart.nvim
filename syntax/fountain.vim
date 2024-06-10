@@ -38,11 +38,11 @@ syn match xLineContinue "\\$" contained
 syn region fountainSceneNumber start="#" end="#" contained
 
 hi def link fountainTitlePage		    title
-hi def link fountainSceneHeading	    SpellCap
-hi def link fountainCharacter			identifier 
-hi def link fountainDialogue			statement
+highlight fountainSceneHeading	ctermbg=238 ctermfg=253 cterm=bold
+highlight fountainCharacter	ctermfg=153 cterm=NONE
+highlight fountainDialogue	ctermfg=195 cterm=NONE
 hi def link fountainParenthetical		function
-hi def link fountainTransition			todo
+highlight fountainTransition	cterm=underline
 hi def link fountainTransitionForced	todo
 hi def link fountainCentered			character
 hi fountainUnderlined					gui=underline
