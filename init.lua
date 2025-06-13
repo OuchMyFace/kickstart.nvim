@@ -96,6 +96,7 @@ vim.g.have_nerd_font = true
 vim.o.tabstop = 4
 vim.o.shiftwidth = 4
 vim.o.expandtab = true
+vim.g['airline_theme'] = 'bubblegum'
 
 -- [[ Setting options ]]
 -- See `:help vim.o`
@@ -287,7 +288,8 @@ require('lazy').setup({
       },
     },
   },
-
+  { 'vim-airline/vim-airline' },
+  { 'vim-airline/vim-airline-themes' },
   -- NOTE: Plugins can also be configured to run Lua code when they are loaded.
   --
   -- This is often very useful to both group configuration, as well as handle
