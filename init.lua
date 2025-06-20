@@ -22,6 +22,7 @@
 
 What is Kickstart?
 
+hiuhfsweif
   Kickstart.nvim is *not* a distribution.
 
   Kickstart.nvim is a starting point for your own configuration.
@@ -105,10 +106,19 @@ vim.keymap.set('n', '<C-u>', '<C-u>zz')
 vim.keymap.set('n', 'n', 'nzzzv')
 vim.keymap.set('n', 'N', 'Nzzzv')
 
+-- Remaps H to go to first non-space char and L to end of the line
+vim.keymap.set('n', 'H', '^', { noremap = true, silent = true })
+vim.keymap.set('n', 'L', '$', { noremap = true, silent = true })
+
+-- using jj to exit into normal mode
+vim.api.nvim_set_keymap('i', 'jj', '<Esc>', { noremap = false })
+vim.api.nvim_set_keymap('i', 'jk', '<Esc>', { noremap = false })
+
 vim.o.tabstop = 4
 vim.o.shiftwidth = 4
 vim.o.expandtab = true
 vim.g['airline_theme'] = 'bubblegum'
+
 -- [[ Setting options ]]
 -- See `:help vim.o`
 -- NOTE: You can change these options as you wish!
