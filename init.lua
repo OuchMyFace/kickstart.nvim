@@ -38,6 +38,9 @@ vim.g.vimwiki_list = {
 -- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.have_nerd_font = true
 
+vim.keymap.set('n', '<leader>tl', '<Plug>VimwikiToggleListItem', { silent = true })
+-- vim.keymap.set('n', '<leader>tl', '<cmd>nohlsearch<CR>')
+
 -- Moves selected lines up and down like vscode.
 vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv")
 vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv")
