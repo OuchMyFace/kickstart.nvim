@@ -28,6 +28,10 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
+local moveline = require 'moveline'
+vim.keymap.set('n', '<A-k>', moveline.move_up)
+vim.keymap.set('n', '<A-j>', moveline.move_down)
+
 vim.g.vimwiki_list = {
   {
     path = '~/vimwiki/', -- path to your wiki files
@@ -244,6 +248,32 @@ rtp:prepend(lazypath)
 -- NOTE: Here is where you install your plugins.
 require('lazy').setup({
   'NMAC427/guess-indent.nvim', -- Detect tabstop and shiftwidth automatically
+  {
+    'folke/snacks.nvim',
+    priority = 1000,
+    lazy = false,
+    opts = {
+      lazygit = { enabled = true, cmd = 'lg' },
+      -- ... other snacks options ...
+    },
+    keys = {
+      {
+        '<leader>lg',
+        function()
+          Snacks.lazygit()
+        end,
+        desc = 'Lazygit',
+      },
+      {
+        '<leader>z',
+        function()
+          Snacks.zen()
+        end,
+        desc = 'Toggle Zen Mode',
+      },
+    },
+  },
+  { dir = '~/plugins/novel.nvim' },
 
   { -- Adds git related signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
@@ -369,6 +399,12 @@ require('lazy').setup({
       vim.keymap.set('n', '<leader>ss', builtin.builtin, { desc = '[S]earch [S]elect Telescope' })
       vim.keymap.set('n', '<leader>sw', builtin.grep_string, { desc = '[S]earch current [W]ord' })
       vim.keymap.set('n', '<leader>sg', builtin.live_grep, { desc = '[S]earch by [G]rep' })
+
+      -- Example: grep for "TODO"
+      vim.keymap.set('n', '<leader>st', function()
+        require('telescope.builtin').live_grep { default_text = '^\\s*([-*]|\\d+\\.|[a-zA-Z]\\.)\\s*\\[[ .oOX]\\]' }
+      end, { desc = '[S]earch [T]asks' })
+
       vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
       vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
       vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
@@ -880,7 +916,7 @@ require('lazy').setup({
     main = 'nvim-treesitter.configs', -- Sets main module to use for opts
     -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
     opts = {
-      ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc' },
+      ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc', 'yaml' },
       -- Autoinstall languages that are not installed
       auto_install = true,
       highlight = {
