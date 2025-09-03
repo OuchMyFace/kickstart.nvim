@@ -28,15 +28,12 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
-local moveline = require 'moveline'
-vim.keymap.set('n', '<A-k>', moveline.move_up)
-vim.keymap.set('n', '<A-j>', moveline.move_down)
-
+vim.g.vimwiki_global_ext = 0 -- Used to disable vimwiki filetype globaly.
 vim.g.vimwiki_list = {
   {
-    path = '~/vimwiki/', -- path to your wiki files
-    syntax = 'markdown', -- use Markdown
-    ext = '.md', -- file extension
+    path = '~/vimwiki/', -- path to your wiki filesin
+    syntax = 'markdown', -- use Markdownin
+    ext = '.vw', -- file extension
   },
 }
 -- Set to true if you have a Nerd Font installed and selected in the terminal
@@ -248,12 +245,27 @@ rtp:prepend(lazypath)
 -- NOTE: Here is where you install your plugins.
 require('lazy').setup({
   'NMAC427/guess-indent.nvim', -- Detect tabstop and shiftwidth automatically
+  { 'bullets-vim/bullets.vim' },
   {
     'folke/snacks.nvim',
     priority = 1000,
     lazy = false,
     opts = {
-      lazygit = { enabled = true, cmd = 'lg' },
+      lazygit = {
+        enabled = true,
+        theme = {
+          [241] = { fg = 'Special' },
+          activeBorderColor = { fg = 'MatchParen', bold = true },
+          cherryPickedCommitBgColor = { fg = 'Identifier' },
+          cherryPickedCommitFgColor = { fg = 'Function' },
+          defaultFgColor = { fg = 'Normal' },
+          inactiveBorderColor = { fg = 'FloatBorder' },
+          optionsTextColor = { fg = 'Function' },
+          searchingActiveBorderColor = { fg = 'MatchParen', bold = true },
+          selectedLineBgColor = { bg = 'Visual' }, -- set to `default` to have no background colour
+          unstagedChangesColor = { fg = 'DiagnosticError' },
+        },
+      },
       -- ... other snacks options ...
     },
     keys = {
@@ -693,7 +705,7 @@ require('lazy').setup({
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
       require('mason-lspconfig').setup {
-        ensure_installed = {}, -- explicitly set to an empty table (Kickstart populates installs via mason-tool-installer)
+        ensure_installed = { 'harper_ls' }, -- explicitly set to an empty table (Kickstart populates installs via mason-tool-installer)
         automatic_installation = false,
         handlers = {
           function(server_name)
